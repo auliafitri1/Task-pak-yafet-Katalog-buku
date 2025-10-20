@@ -198,3 +198,327 @@
   .card { padding: 24px; }
   .stat-number { font-size: 2rem; }
 }
+/* === SATU CONTAINER BESAR — KATALOG + MISI & VISI === */
+/* === SATU CONTAINER BESAR — FULL IMAGE === */
+.catalog-mission-container {
+  padding: 0;
+  background: #f9fafb;
+}
+
+.catalog-mission-container .container {
+  max-width: 1200px;
+  height: 500px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 27px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  padding: 0; /* hapus padding agar full */
+  height: 400px; /* atur tinggi tetap */
+  position: relative;
+}
+
+/* Book Stack — Full Container */
+.book-stack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.book {
+  flex: 0 0 auto;
+  width: 160px;
+  height: 240px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease;
+}
+
+.book:hover {
+  transform: translateY(-6px);
+}
+
+/* Gunakan URL yang sudah ada */
+.book-1 { background-image: url('https://i.pinimg.com/736x/d1/12/ee/d112ee664793dfd6572f7982cb5a8418.jpg'); }
+.book-2 { background-image: url('https://i.pinimg.com/1200x/37/7a/f1/377af12bbc44de29226623b7e77cbded.jpg'); }
+.book-3 { background-image: url('https://i.pinimg.com/736x/cb/fe/be/cbfebea957e3e7962635f730d04f6ac5.jpg'); }
+.book-4 { background-image: url('https://i.pinimg.com/736x/dc/85/3c/dc853cbe1b4680a2588902f016f190a1.jpg'); }
+.book-5 { background-image: url('https://i.pinimg.com/736x/ff/8c/ea/ff8ceae9b89295aa3047e79d6ab9620d.jpg'); }
+.search-btn {
+  background-color: #f59e0b;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #d97706;
+}
+
+.catalog-image {
+  flex: 0 0 40%;
+  display: flex;
+  justify-content: center;
+}
+
+/* === BOOK STACK — MENYAMPING (HORIZONTAL) === */
+.book-stack {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap; /* agar tetap horizontal di desktop */
+  overflow-x: auto; /* scroll horizontal jika di mobile */
+  padding: 20px 0;
+  max-width: 100%;
+}
+
+.book {
+  flex: 0 0 auto; /* jangan shrink atau grow */
+  width: 140px;
+  height: 200px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease;
+}
+
+.book:hover {
+  transform: translateY(-6px);
+}
+
+.book-1 {
+  background-image: url('https://i.pinimg.com/736x/d1/12/ee/d112ee664793dfd6572f7982cb5a8418.jpg');
+  transform: rotate(-15deg) translateX(-60px) translateY(20px);
+  z-index: 1;
+}
+
+.book-2 {
+  background-image: url('https://i.pinimg.com/1200x/37/7a/f1/377af12bbc44de29226623b7e77cbded.jpg');
+  transform: rotate(-5deg) translateX(-30px) translateY(10px);
+  z-index: 3;
+}
+
+.book-3 {
+  background-image: url('https://i.pinimg.com/736x/cb/fe/be/cbfebea957e3e7962635f730d04f6ac5.jpg');
+  transform: rotate(0deg);
+  z-index: 5;
+}
+
+.book-4 {
+  background-image: url('https://i.pinimg.com/736x/dc/85/3c/dc853cbe1b4680a2588902f016f190a1.jpg');
+  transform: rotate(5deg) translateX(30px) translateY(10px);
+  z-index: 3;
+}
+
+.book-5 {
+  background-image: url('https://i.pinimg.com/736x/ff/8c/ea/ff8ceae9b89295aa3047e79d6ab9620d.jpg');
+  transform: rotate(15deg) translateX(60px) translateY(20px);
+  z-index: 1;
+}
+
+/* Divider (Garis Pemisah) */
+.divider {
+  height: 1px;
+  background: #eee;
+  margin: 40px 0;
+}
+
+/* === Misi & Visi — Versi Ringkas & Rapi === */
+.mission-vision-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.mission-card,
+.vision-card {
+  background: white;
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+  border: 1px solid #f0f0f0;
+  transition: transform 0.2s ease;
+}
+
+.mission-card:hover,
+.vision-card:hover {
+  transform: translateY(-4px);
+}
+
+.mission-card h2,
+.vision-card h2 {
+  font-size: 1.6rem;
+  color: #4a5568;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.mission-card p,
+.vision-card p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .catalog-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .catalog-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .catalog-image {
+    margin-top: 30px;
+  }
+
+  .book-stack {
+    max-width: 300px;
+    height: 240px;
+  }
+
+  .book {
+    width: 140px;
+    height: 200px;
+  }
+
+  .book-1 { transform: rotate(-15deg) translateX(-40px) translateY(10px); }
+  .book-2 { transform: rotate(-5deg) translateX(-20px) translateY(5px); }
+  .book-4 { transform: rotate(5deg) translateX(20px) translateY(5px); }
+  .book-5 { transform: rotate(15deg) translateX(40px) translateY(10px); }
+}
+.mission-vision-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px; /* tambahkan ini agar tidak menempel ke garis */
+}
+
+/* === SATU CONTAINER BESAR — FULL IMAGE + BACKGROUND RUANGAN === */
+.catalog-mission-container {
+  padding: 0;
+  background: #ffffff;
+}
+
+.catalog-mission-container .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #333 0%, #222 100%);
+  border-radius: 27px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: relative;
+  height: 400px;
+}
+
+/* Background Ruangan */
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://i.imgur.com/6JZzFQx.jpg') center/cover no-repeat;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+/* Sofa */
+.container::after {
+  content: '';
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: #333;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+  z-index: -1;
+}
+
+/* Book Stack — Full Container with 3D Effect */
+.book-stack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 30px;
+  box-sizing: border-box;
+  perspective: 1000px;
+}
+
+.book {
+  position: relative;
+  width: 180px;
+  height: 260px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.4s ease, z-index 0.4s ease;
+  cursor: pointer;
+}
+
+/* Efek 3D — buku di tengah lebih besar & rata */
+.book:nth-child(3) {
+  transform: scale(1.1) translateY(-10px);
+  z-index: 10;
+  box-shadow: 0 12px 32px rgba(255, 255, 255, 0.3);
+}
+
+/* Buku di kiri & kanan — lebih kecil & miring */
+.book:nth-child(2),
+.book:nth-child(4) {
+  transform: scale(0.9) rotateY(10deg);
+  z-index: 5;
+}
+
+.book:nth-child(1),
+.book:nth-child(5) {
+  transform: scale(0.8) rotateY(20deg);
+  z-index: 2;
+}
+
+.book:hover {
+  transform: scale(1.15) translateY(-15px) !important;
+  z-index: 20;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Gunakan URL gambar yang sudah ada */
+.book-1 { background-image: url('https://i.pinimg.com/736x/d1/12/ee/d112ee664793dfd6572f7982cb5a8418.jpg'); }
+.book-2 { background-image: url('https://i.pinimg.com/1200x/37/7a/f1/377af12bbc44de29226623b7e77cbded.jpg'); }
+.book-3 { background-image: url('https://i.pinimg.com/736x/cb/fe/be/cbfebea957e3e7962635f730d04f6ac5.jpg'); }
+.book-4 { background-image: url('https://i.pinimg.com/736x/dc/85/3c/dc853cbe1b4680a2588902f016f190a1.jpg'); }
+.book-5 { background-image: url('https://i.pinimg.com/736x/ff/8c/ea/ff8ceae9b89295aa3047e79d6ab9620d.jpg'); }

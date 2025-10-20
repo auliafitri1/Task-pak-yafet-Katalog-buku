@@ -106,7 +106,6 @@ export default function AdminDashboard() {
     <div className="dashboard">
       <Navbar />
 
-          
 
       {/* ================= Search Bar ================= */}
       <div className="search-section animate-fade-in-up">
@@ -126,6 +125,34 @@ export default function AdminDashboard() {
         </div>
       </div>
 
+          {/* Konten utama */}
+      <main className="content">
+        <div className="hero-container">
+          <aside className="sidebar">
+            <h3>📂 Categories Books</h3>
+            <ul>
+              {categories.map((cat) => (
+                <li
+                  key={cat}
+                  className={selectedCategory === cat ? "active" : ""}
+                  onClick={() => setSelectedCategory(cat)}
+                >
+                  {cat}
+                </li>
+              ))}
+            </ul>
+          </aside>
+
+          <section className="hero">
+            <h2>Selamat datang<br />Di Katalog Buku Aplikasi</h2>
+            <p>EduBooks — Portal Digital Para Pecinta Buku! EduBooks hadir untuk memudahkan Anda menemukan buku favorit dengan cepat dan praktis. Jelajahi ribuan koleksi dari berbagai kategori, baca sinopsis menarik, dan temukan rekomendasi buku terbaik untuk menemani hari Anda. Belajar jadi lebih seru, hanya di EduBooks!</p>
+            <button className="hero-button" onClick={() => window.scrollTo({ top: 800, behavior: 'smooth' })}>
+              Cek Sekarang
+            </button>
+          </section>
+        </div>
+        </main>
+
       
 
        
@@ -144,7 +171,7 @@ export default function AdminDashboard() {
 
         {/* ================= Populer Section ================= */}
         <section className="populer-section animate-fade-in-up">
-          <h2 className="populer-title">Populer</h2>
+          <h2 className="populer-title"></h2>
           <div className="populer-carousel-container">
             <button className="carousel-arrow left" onClick={scrollLeft}>
               &#8249;

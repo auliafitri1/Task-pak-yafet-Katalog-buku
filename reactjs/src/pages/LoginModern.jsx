@@ -146,7 +146,7 @@ export default function LoginModern() {
 
         {/* Footer */}
         <div className="login-footer">
-          <p>&copy; 2024 EduBooks. All rights reserved.</p>
+          <p>&copy; 2025 EduBooks. All rights reserved.</p>
         </div>
       </div>
 

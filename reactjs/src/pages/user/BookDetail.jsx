@@ -88,7 +88,7 @@ const BookDetail = () => {
     return (
       <div className="book-detail-loading">
         <div className="loading-spinner"></div>
-        <p>Memuat detail buku...</p>
+        <p></p>
       </div>
     );
   }
