@@ -12,7 +12,7 @@ export default function AdminDashboard() {
   const [error, setError] = useState(null);
   const carouselRef = useRef(null);
 
-    // 🔹 Fungsi scroll geser kiri/kanan
+  // 🔹 Fungsi scroll geser kiri/kanan
   const scrollLeft = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({ left: -650, behavior: "smooth" });
@@ -92,15 +92,33 @@ export default function AdminDashboard() {
 
   const handleEdit = (id) => navigate(`/admin/edit-book/${id}`);
 
-  if (loading) return <div className="dashboard"><h2>Memuat daftar buku...</h2></div>;
-  if (error)
+  // ✅ PERBAIKAN LOADING
+  if (loading) {
     return (
-      <div className="dashboard" style={{ color: "red", textAlign: "center", padding: "50px" }}>
-        <h3>❌ Error</h3>
-        <p>{error}</p>
-        <button onClick={() => window.location.reload()}>Coba Lagi</button>
+      <div className="dashboard">
+        <Navbar />
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <p>Sedang memuat data...</p>
+        </div>
       </div>
     );
+  }
+
+  if (error) {
+    return (
+      <div className="dashboard">
+        <Navbar />
+        <div className="error-container" style={{ color: "red", textAlign: "center", padding: "50px" }}>
+          <h3>❌ Error</h3>
+          <p>{error}</p>
+          <button onClick={() => window.location.reload()} className="retry-btn">Coba Lagi</button>
+        </div>
+      </div>
+    );
+  }
+
+  // ... SISANYA TETAP SAMA (return dengan konten dashboard)
 
   return (
     <div className="dashboard">

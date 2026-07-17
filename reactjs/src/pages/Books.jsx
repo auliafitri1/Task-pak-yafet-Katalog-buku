@@ -48,7 +48,16 @@ const Books = () => {
         }
 
         const data = await response.json();
-        setBooks(data);
+        
+        // 🔥 PERBAIKAN: Handle berbagai format data
+        if (Array.isArray(data)) {
+          setBooks(data);
+        } else if (data.data && Array.isArray(data.data)) {
+          setBooks(data.data);
+        } else {
+          setBooks([]);
+        }
+        
         setError(null);
       } catch (err) {
         console.error("Error fetching books:", err);
@@ -64,11 +73,10 @@ const Books = () => {
   // 🔄 Auto-scroll logic
   useEffect(() => {
     const carousel = carouselRef.current;
-    if (!carousel) return;
+    if (!carousel || books.length === 0) return;
 
     let scrollAmount = 0;
-    const scrollStep = 1; // kecepatan (semakin kecil = semakin lambat)
-    const delay = 30; // ms
+    const scrollStep = 1;
 
     const autoScroll = () => {
       if (isHoveredRef.current) {
@@ -76,11 +84,9 @@ const Books = () => {
         return;
       }
 
-      // Scroll ke kiri
       carousel.scrollLeft += scrollStep;
       scrollAmount += scrollStep;
 
-      // Jika sudah sampai akhir, reset ke awal (efek infinite)
       if (scrollAmount >= carousel.scrollWidth - carousel.clientWidth) {
         setTimeout(() => {
           carousel.scrollLeft = 0;
@@ -98,7 +104,7 @@ const Books = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [books]); // Jalankan ulang saat buku berubah (filter/search)
+  }, [books]);
 
   const categories = ["all", ...new Set(books.map((b) => b.category || "Unknown"))];
 
@@ -117,12 +123,7 @@ const Books = () => {
       return 0;
     });
 
-  if (loading)
-    return (
-      <div className="dashboard">
-        <h2>Memuat daftar buku...</h2>
-      </div>
-    );
+ 
 
   if (error)
     return (
@@ -213,7 +214,7 @@ const Books = () => {
             
           </div>
 
-          {/* Kontainer carousel */}
+          {/* Kontainer carousel - ✅ PERBAIKAN: HAPUS DUPILKASI */}
           <div
             className="book-cover-carousel"
             ref={carouselRef}
@@ -221,15 +222,15 @@ const Books = () => {
             onMouseLeave={() => (isHoveredRef.current = false)}
           >
             {filteredBooks.length > 0 ? (
-              // 🔁 Duplikasi buku untuk efek infinite loop
-              [...filteredBooks, ...filteredBooks].map((book, index) => (
+              // ✅ PERBAIKAN: Tampilkan 1x saja, TIDAK DIDUPLIKASI
+              filteredBooks.map((book) => (
                 <Link
-                  key={`${book.id}-${index}`}
+                  key={book.id}
                   to={`/books/${book.id}`}
                   className="book-cover-item"
                 >
                   <img
-                    src={book.cover}
+                    src={book.cover || 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=600&fit=crop'}
                     alt={book.title || "Book Cover"}
                     className="book-cover-image"
                     onError={(e) => {
@@ -239,7 +240,7 @@ const Books = () => {
                 </Link>
               ))
             ) : (
-              <div className="no-books-message">No books found.</div>
+              <div className="no-books-message">Tidak ada buku ditemukan</div>
             )}
           </div>
           

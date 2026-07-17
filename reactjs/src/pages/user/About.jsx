@@ -8,43 +8,62 @@ const About = () => {
     <div className="about-page">
       <Navbar />
 
-     
-    
+      {/* ===== HERO SECTION ===== */}
+      <section className="about-hero">
+        <div className="container">
+          <h1>Tentang <span>EduBooks</span></h1>
+          <p>
+            Platform baca digital yang menghubungkan pecinta buku dengan ribuan koleksi 
+            dari berbagai genre. Temukan, baca, dan bagikan pengalaman membaca Anda.
+          </p>
+        </div>
+      </section>
 
-      {/* Bagian Bawah: Misi & Visi — SAMPING-SAMPINGAN */}
-          <div className='container'>
+      {/* ===== MISSION & VISION ===== */}
+      <section className="mission-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Visi &amp; <span>Misi</span></h2>
+            <p>Menjadi jembatan antara pembaca dan pengetahuan</p>
+          </div>
           <div className="mission-vision-grid">
             <div className="mission-card">
-              <h2>Misi Kami</h2>
+              <div className="card-icon">🌟</div>
+              <h2>Visi Kami</h2>
               <p>
-                Menyediakan akses mudah ke ribuan buku dari berbagai genre, mendorong budaya literasi, dan menciptakan pengalaman membaca yang menyenangkan bagi semua kalangan.
+                Menjadi platform baca digital terdepan di Indonesia yang 
+                menginspirasi jutaan orang untuk terus belajar melalui buku.
               </p>
             </div>
             <div className="vision-card">
-              <h2>Visi Kami</h2>
+              <div className="card-icon">🎯</div>
+              <h2>Misi Kami</h2>
               <p>
-                Menjadi platform baca digital terdepan di Indonesia yang menginspirasi jutaan orang untuk terus belajar melalui buku.
+                 Menyediakan akses mudah ke ribuan buku dari berbagai genre, 
+                mendorong budaya literasi, dan menciptakan pengalaman membaca 
+                yang menyenangkan bagi semua kalangan.
               </p>
             </div>
-            </div>
           </div>
+        </div>
+      </section>
 
-          
-      
-        
-
-      {/* Values */}
+      {/* ===== VALUES ===== */}
       <section className="values-section">
         <div className="container">
-          <h2 className="section-title">Nilai yang Kami Junjung</h2>
+          <div className="section-header">
+            <h2>Nilai yang <span>Kami Junjung</span></h2>
+            <p>Prinsip yang menjadi dasar kami dalam melayani pembaca</p>
+          </div>
           <div className="values-grid">
             {[
-              { title: "Kualitas", desc: "Kurasi buku terbaik dari penerbit tepercaya." },
-              { title: "Aksesibilitas", desc: "Bisa diakses kapan saja, di mana saja." },
-              { title: "Keamanan", desc: "Data pribadi Anda selalu terlindungi." },
-              { title: "Komunitas", desc: "Wadah berbagi dan diskusi antar pecinta buku." }
+              { icon: '', title: "Kualitas", desc: "Kurasi buku terbaik dari penerbit tepercaya." },
+              { icon: '', title: "Aksesibilitas", desc: "Bisa diakses kapan saja, di mana saja." },
+              { icon: '', title: "Keamanan", desc: "Data pribadi Anda selalu terlindungi." },
+              { icon: '', title: "Komunitas", desc: "Wadah berbagi dan diskusi antar pecinta buku." }
             ].map((item, i) => (
               <div className="value-card" key={i}>
+                <div className="value-icon">{item.icon}</div>
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>
               </div>
@@ -53,10 +72,9 @@ const About = () => {
         </div>
       </section>
 
-       {/* === SATU CONTAINER BESAR — KATALOG + MISI & VISI === */}
+      {/* ===== CATALOG - JANGAN DIUBAH ===== */}
       <section className="catalog-mission-container">
         <div className="container">
-          {/* Bagian Atas: Ilustrasi Buku Saja (tanpa teks) */}
           <div className="catalog-header">
             <div className="catalog-image">
               <div className="book-stack">
@@ -68,50 +86,54 @@ const About = () => {
               </div>
             </div>
           </div>
-
-          {/* Garis Pemisah */}
           <div className="divider"></div>
-
-          
         </div>
       </section>
 
-      {/* Stats */}
+      {/* ===== STATS ===== */}
       <section className="stats-section">
         <div className="container">
-          <div className="stat-item">
-            <span className="stat-number">10.000+</span>
-            <span className="stat-label">Buku Tersedia</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-number">50.000+</span>
-            <span className="stat-label">Pembaca Aktif</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-number">100+</span>
-            <span className="stat-label">Kategori</span>
+          <div className="stats-grid">
+            <div className="stat-item">
+              <span className="stat-number">10.000+</span>
+              <span className="stat-label">Buku Tersedia</span>
+            </div>
+            <div className="stat-divider"></div>
+            <div className="stat-item">
+              <span className="stat-number">50.000+</span>
+              <span className="stat-label">Pembaca Aktif</span>
+            </div>
+            <div className="stat-divider"></div>
+            <div className="stat-item">
+              <span className="stat-number">100+</span>
+              <span className="stat-label">Kategori</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Contact */}
+      {/* ===== CONTACT ===== */}
       <section className="contact-section">
         <div className="container">
-          <h2>Hubungi Kami</h2>
-          <p>Kami terbuka untuk saran, kolaborasi, atau sekadar ngobrol tentang buku!</p>
-          <div className="contact-links">
-            <a href="mailto:support@edubooks.com"> support@edubooks.com</a>
-            <a href="https://wa.me/6283848344688" target="_blank" rel="noopener noreferrer">
-               +62 838-4834-4688
-            </a>
+          <div className="contact-wrapper">
+            <h2>Hubungi Kami</h2>
+            <p>Kami terbuka untuk saran, kolaborasi, atau sekadar ngobrol tentang buku!</p>
+            <div className="contact-links">
+              <a href="mailto:support@edubooks.com" className="contact-link">
+                <span className="contact-icon"></span> support@edubooks.com
+              </a>
+              <a href="https://wa.me/6283848344688" target="_blank" rel="noopener noreferrer" className="contact-link">
+                <span className="contact-icon"></span> +62 838-4834-4688
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
+      {/* ===== FOOTER ===== */}
       <footer className="about-footer">
         <div className="container">
-          <p>© 2025 EduBooks. All rights reserved. Dibuat dengan ❤️ untuk pembaca Indonesia.</p>
+          <p>© 2026 EduBooks.</p>
         </div>
       </footer>
     </div>

@@ -44,6 +44,7 @@ export default function AdminDashboard() {
 
         const data = await res.json();
         setBooks(Array.isArray(data) ? data : []);
+        setError(null);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -92,20 +93,35 @@ export default function AdminDashboard() {
 
   const handleEdit = (id) => navigate(`/admin/edit-book/${id}`);
 
-  if (loading) return <div className="dashboard"><h2>Memuat daftar buku...</h2></div>;
-  if (error)
+  // ✅ PERBAIKAN: Loading state dengan spinner
+  if (loading) {
     return (
-      <div className="dashboard" style={{ color: "red", textAlign: "center", padding: "50px" }}>
-        <h3>❌ Error</h3>
-        <p>{error}</p>
-        <button onClick={() => window.location.reload()}>Coba Lagi</button>
+      <div className="dashboard">
+        <Navbar />
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <p>Memuat daftar buku...</p>
+        </div>
       </div>
     );
+  }
+
+  if (error) {
+    return (
+      <div className="dashboard">
+        <Navbar />
+        <div className="error-container" style={{ color: "red", textAlign: "center", padding: "50px" }}>
+          <h3>❌ Error</h3>
+          <p>{error}</p>
+          <button onClick={() => window.location.reload()} className="retry-button">Coba Lagi</button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="dashboard">
       <Navbar />
-
 
       {/* ================= Search Bar ================= */}
       <div className="search-section animate-fade-in-up">
@@ -125,7 +141,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-          {/* Konten utama */}
+      {/* Konten utama */}
       <main className="content">
         <div className="hero-container">
           <aside className="sidebar">
@@ -151,11 +167,7 @@ export default function AdminDashboard() {
             </button>
           </section>
         </div>
-        </main>
-
-      
-
-       
+      </main>
 
       <main className="content">
         {/* ================= Quick Actions ================= */}
@@ -166,9 +178,6 @@ export default function AdminDashboard() {
           </div>
         </section>
 
-        
-       
-
         {/* ================= Populer Section ================= */}
         <section className="populer-section animate-fade-in-up">
           <h2 className="populer-title"></h2>
@@ -178,19 +187,23 @@ export default function AdminDashboard() {
             </button>
 
             <div className="populer-layout" ref={carouselRef}>
-              {filteredBooks.map((book) => (
-                <div key={book.id} className="populer-card">
-                  <img
-                    src={book.cover || "https://via.placeholder.com/300x400?text=No+Cover"}
-                    alt={book.title}
-                    className="populer-cover"
-                  />
-                  <div className="populer-info">
-                    <h4>{book.title}</h4>
-                    <p>by {book.author || "Tidak diketahui"}</p>
+              {filteredBooks.length > 0 ? (
+                filteredBooks.map((book) => (
+                  <div key={book.id} className="populer-card">
+                    <img
+                      src={book.cover || "https://via.placeholder.com/300x400?text=No+Cover"}
+                      alt={book.title}
+                      className="populer-cover"
+                    />
+                    <div className="populer-info">
+                      <h4>{book.title}</h4>
+                      <p>by {book.author || "Tidak diketahui"}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <div className="no-books-message">Tidak ada buku ditemukan</div>
+              )}
             </div>
 
             <button className="carousel-arrow right" onClick={scrollRight}>
@@ -199,59 +212,59 @@ export default function AdminDashboard() {
           </div>
         </section>
 
-     
-
         {/* Book Grid */}
         <section className="books-grid-section animate-fade-in-up">
           <div className="book-grid">
-            {filteredBooks.map((book) => (
-              <div key={book.id} className={`book-card ${book.isFeatured ? 'featured' : ''}`}>
-                {book.isFeatured && <div className="featured-badge">Featured</div>}
+            {filteredBooks.length > 0 ? (
+              filteredBooks.map((book) => (
+                <div key={book.id} className={`book-card ${book.isFeatured ? 'featured' : ''}`}>
+                  {book.isFeatured && <div className="featured-badge">Featured</div>}
 
-                <div className="book-cover-container">
-                  <img
-                    src={book.cover || "  https://via.placeholder.com/300x400?text=No+Cover"}
-                    alt={book.title}
-                    className="book-cover"
-                    onError={(e) => { e.target.src = "  https://via.placeholder.com/300x400?text=Error"; }}
-                  />
-                  <div className="book-overlay">
-                    <Link to={`/books/${book.id}`} className="view-details-btn">View Details</Link>
+                  <div className="book-cover-container">
+                    <img
+                      src={book.cover || "https://via.placeholder.com/300x400?text=No+Cover"}
+                      alt={book.title}
+                      className="book-cover"
+                      onError={(e) => { e.target.src = "https://via.placeholder.com/300x400?text=Error"; }}
+                    />
+                    <div className="book-overlay">
+                      <Link to={`/books/${book.id}`} className="view-details-btn">View Details</Link>
+                    </div>
+                  </div>
+
+                  <div className="book-info">
+                    <h3 className="book-title">{book.title || "Tanpa Judul"}</h3>
+                    <p className="book-author">by {book.author || "Tidak Diketahui"}</p>
+
+                    <div className="book-meta">
+                      <span className="book-category">{book.category || "Umum"}</span>
+                      <span className="book-year">{book.published || book.year || ""}</span>
+                    </div>
+
+                    <div className="book-rating-area">
+                      {renderStars(book.rating)}
+                      <span style={{ marginLeft: 8 }}>{book.rating ?? "N/A"}</span>
+                    </div>
+
+                    <p className="book-description">
+                      {((book.description || "")).length > 100
+                        ? `${book.description.substring(0, 100)}...`
+                        : (book.description || "")}
+                    </p>
+
+                    <div className="book-actions" style={{ display: "flex", gap: 8, marginTop: 12 }}>
+                      <Link to={`/books/${book.id}`} className="primary-btn">Read More</Link>
+                    </div>
                   </div>
                 </div>
-
-                <div className="book-info">
-                  <h3 className="book-title">{book.title || "Tanpa Judul"}</h3>
-                  <p className="book-author">by {book.author || "Tidak Diketahui"}</p>
-
-                  <div className="book-meta">
-                    <span className="book-category">{book.category || "Umum"}</span>
-                    <span className="book-year">{book.published || book.year || ""}</span>
-                  </div>
-
-                  <div className="book-rating-area">
-                    {renderStars(book.rating)}
-                    <span style={{ marginLeft: 8 }}>{book.rating ?? "N/A"}</span>
-                  </div>
-
-                  <p className="book-description">
-                    {((book.description || "")).length > 100
-                      ? `${book.description.substring(0, 100)}...`
-                      : (book.description || "")}
-                  </p>
-
-                  <div className="book-actions" style={{ display: "flex", gap: 8, marginTop: 12 }}>
-                    <Link to={`/books/${book.id}`} className="primary-btn">Read More</Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-
-            {filteredBooks.length === 0 && (
-              <p style={{ textAlign: "center", width: "100%" }}>Tidak ada buku ditemukan.</p>
+              ))
+            ) : (
+              <p style={{ textAlign: "center", width: "100%", padding: "40px 0" }}>
+                Tidak ada buku ditemukan.
+              </p>
             )}
           </div>
-        </section> 
+        </section>
       </main>
     </div>
   );

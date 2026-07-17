@@ -10,29 +10,33 @@ use Illuminate\Support\Facades\Hash; // ← dipakai untuk register
 class AuthController extends Controller
 {
     // 🔹 REGISTER
-    public function register(Request $request)
-    {
-        $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name'  => 'required|string|max:255',
-            'email'      => 'required|email|unique:penggunas,email',
-            'password'   => 'required|min:6',
-            'role'       => 'required|in:user,admin',
-        ]);
+   public function register(Request $request)
+{
+    $request->validate([
+        'first_name' => 'required|string|max:255',
+        'last_name'  => 'required|string|max:255',
+        'email'      => 'required|email|unique:penggunas,email', // ✅ SUDAH BENAR
+        'password'   => 'required|min:6',
+        'role'       => 'required|in:user,admin',
+    ]);
 
-        $user = User::create([
-            'first_name' => $request->first_name,
-            'last_name'  => $request->last_name,
-            'email'      => $request->email,
-            'password'   => Hash::make($request->password),
-            'role'       => $request->role,
-        ]);
+    $user = User::create([
+        'first_name' => $request->first_name,
+        'last_name'  => $request->last_name,
+        'email'      => $request->email,
+        'password'   => Hash::make($request->password),
+        'role'       => $request->role,
+    ]);
 
-        return response()->json([
-            'message' => 'Registrasi berhasil!',
-            'data'    => $user,
-        ], 201);
-    }
+    // 🔥 TAMBAHKAN INI (buat token)
+    $token = $user->createToken('auth_token')->plainTextToken;
+
+    return response()->json([
+        'message' => 'Registrasi berhasil!',
+        'token'   => $token,        // ← INI PENTING!
+        'data'    => $user,
+    ], 201);
+}
 
 
 

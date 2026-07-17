@@ -270,6 +270,7 @@
   font-family: inherit;
   color: var(--text-primary);
   width: 100%;
+  box-sizing: border-box;
 }
 
 .input-group input:focus,
@@ -332,12 +333,11 @@
   margin-top: 8px;
   font-weight: 500;
 }
-
 /* ===== FORM NAVIGATION ===== */
 .form-navigation {
   padding: 20px 24px;
   border-top: 1px solid var(--border-color);
-  background: var(--border-light);
+  background: transparent; /* ← HILANGKAN WARNA PUTIH */
 }
 
 .nav-buttons {
@@ -419,8 +419,9 @@
 }
 
 .action-button.cancel:hover {
-  background: var(--border-light);
-  color: var(--text-primary);
+  background: #fef2f2;
+  color: var(--error-color);
+  border-color: var(--error-color);
 }
 
 .action-button.primary {
@@ -455,8 +456,10 @@
   100% { transform: rotate(360deg); }
 }
 
-/* ===== PREVIEW SIDE ===== */
-/* ===== PREVIEW SIDE ===== */
+/* ============================================================
+   PREVIEW SIDE - PERBAIKAN KHUSUS "Cari buku..." DAN "All"
+   ============================================================ */
+
 .preview-side {
   min-height: calc(100vh - 100px);
 }
@@ -488,20 +491,34 @@
   margin: 0 0 24px 0;
 }
 
+/* ===== PREVIEW CONTROLS - PERBAIKAN ===== */
 .preview-controls {
   display: flex;
   gap: 12px;
   margin-bottom: 24px;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .search-input {
-  flex: 1;
-  padding: 12px 16px;
+  width: 100%;
+  padding: 9px 14px;
   border: 2px solid var(--border-color);
   border-radius: var(--radius-md);
-  font-size: 14px;
+  font-size: 13px;
   transition: all 0.2s ease;
   background: var(--card-bg);
+  box-sizing: border-box;
+  display: block;
+  outline: none;
+  color: var(--text-primary);
 }
 
 .search-input:focus {
@@ -510,20 +527,31 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
+.search-input::placeholder {
+  color: var(--text-light);
+  font-size: 13px;
+}
+
 .category-filter {
-  padding: 12px 16px;
+  padding: 9px 14px;
   border: 2px solid var(--border-color);
   border-radius: var(--radius-md);
-  font-size: 14px;
+  font-size: 13px;
   background: var(--card-bg);
   color: var(--text-primary);
-  min-width: 140px;
   cursor: pointer;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  min-width: 100px;
+  max-width: 140px;
+  outline: none;
+  appearance: auto;
 }
 
 .category-filter:focus {
   outline: none;
   border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 /* ===== BOOK PREVIEW GRID ===== */
@@ -626,7 +654,6 @@
   font-weight: 500;
 }
 
-/* Book Meta Information */
 .book-meta {
   display: flex;
   flex-wrap: wrap;
@@ -648,7 +675,6 @@
   color: var(--primary-color);
 }
 
-/* Book Description */
 .book-description {
   margin: 8px 0;
 }
@@ -664,7 +690,6 @@
   overflow: hidden;
 }
 
-/* Book Actions */
 .book-actions {
   margin-top: auto;
   display: flex;
@@ -689,7 +714,6 @@
   transform: translateY(-1px);
 }
 
-/* No Books State */
 .no-books {
   text-align: center;
   padding: 60px 20px;
@@ -712,7 +736,6 @@
   font-size: 12px;
 }
 
-/* View All Button */
 .view-all-button {
   width: 100%;
   padding: 14px;
@@ -749,7 +772,7 @@
   left: 100%;
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
+
 @media (max-width: 1024px) {
   .add-book-layout {
     grid-template-columns: 1fr;
@@ -775,6 +798,22 @@
   .book-meta {
     justify-content: center;
   }
+
+  /* PERBAIKAN: Cari buku & All jadi full width di tablet */
+  .preview-controls {
+    flex-wrap: wrap;
+  }
+  
+  .search-box {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+  
+  .category-filter {
+    flex: 1 1 auto;
+    min-width: 120px;
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -782,12 +821,19 @@
     padding: 16px;
   }
   
+  /* PERBAIKAN: Cari buku & All jadi kolom di mobile */
   .preview-controls {
     flex-direction: column;
+  }
+
+  .search-box {
+    width: 100%;
   }
   
   .category-filter {
     min-width: auto;
+    max-width: 100%;
+    width: 100%;
   }
   
   .book-preview-card {
@@ -820,5 +866,16 @@
   .detail-btn {
     flex: none;
     min-width: 120px;
+  }
+
+  /* PERBAIKAN: Ukuran lebih kecil di mobile */
+  .search-input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .category-filter {
+    font-size: 12px;
+    padding: 8px 12px;
   }
 }

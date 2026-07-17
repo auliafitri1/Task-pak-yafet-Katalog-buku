@@ -17,14 +17,16 @@ export default function Register() {
     setIsLoading(true);
 
     const newUser = {
-      first_name: firstName, 
+      first_name: firstName,
       last_name: lastName,
       email,
       password,
-      role, 
+      role,
     };
 
     try {
+      console.log("Mengirim data:", newUser); // ← LOG untuk debugging
+
       const response = await fetch("http://localhost:8000/api/register", {
         method: "POST",
         headers: {
@@ -34,27 +36,51 @@ export default function Register() {
         body: JSON.stringify(newUser),
       });
 
+      // ✅ PERBAIKAN: Hanya 1 kali response.json()
       const data = await response.json();
+      console.log("Response dari server:", data); // ← LOG untuk debugging
 
       if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Error API:", errorData);
-        alert("Gagal registrasi: " + (errorData.message || "Terjadi error"));
+        // Tampilkan pesan error dari server
+        let errorMessage = "Terjadi error saat registrasi";
+        
+        if (data.message) {
+          errorMessage = data.message;
+        }
+        
+        if (data.errors) {
+          // Jika ada error validasi (laravel)
+          const errorList = Object.values(data.errors).flat().join("\n");
+          errorMessage = errorList || errorMessage;
+        }
+        
+        alert("❌ Gagal registrasi:\n" + errorMessage);
+        setIsLoading(false);
         return;
       }
 
-      console.log("Sukses:", data);
+      // Sukses!
+      console.log("✅ Registrasi sukses:", data);
 
       // Simpan data ke localStorage
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("role", data.data.role);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+      }
+      localStorage.setItem("role", data.data?.role || role);
+      localStorage.setItem("user", JSON.stringify(data.data || data.user));
 
-      alert(`Registrasi berhasil sebagai ${data.data.role}!`);
-      navigate("/login-modern"); // 👈 langsung ke profil
+      alert(`✅ Registrasi berhasil sebagai ${data.data?.role || role}!`);
+      navigate("/login-modern");
+      
     } catch (err) {
-      console.error("Fetch error:", err);
-      alert("Tidak bisa terhubung ke server!");
+      console.error("❌ Fetch error:", err);
+      alert(
+        "❌ Tidak bisa terhubung ke server!\n\n" +
+        "Pastikan:\n" +
+        "1. Laravel berjalan di http://localhost:8000\n" +
+        "2. Jalankan: php artisan serve\n" +
+        "3. Cek koneksi internet"
+      );
     } finally {
       setIsLoading(false);
     }
@@ -62,8 +88,6 @@ export default function Register() {
 
   return (
     <div className="register-modern">
-    
-      
       <div className="register-container">
         {/* Header Section */}
         <div className="register-header">
@@ -99,7 +123,6 @@ export default function Register() {
                   disabled={isLoading}
                   className="modern-input"
                 />
-                <span className="input-icon"></span>
               </div>
 
               <div className="input-group">
@@ -114,7 +137,6 @@ export default function Register() {
                   disabled={isLoading}
                   className="modern-input"
                 />
-                <span className="input-icon"></span>
               </div>
             </div>
 
@@ -130,7 +152,6 @@ export default function Register() {
                 disabled={isLoading}
                 className="modern-input"
               />
-              <span className="input-icon"></span>
             </div>
 
             <div className="input-group">
@@ -145,7 +166,6 @@ export default function Register() {
                 disabled={isLoading}
                 className="modern-input"
               />
-              <span className="input-icon"></span>
             </div>
 
             {/* Role Selection */}
@@ -177,8 +197,8 @@ export default function Register() {
               </div>
             </div>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className={`register-btn ${isLoading ? 'loading' : ''}`}
               disabled={isLoading}
             >

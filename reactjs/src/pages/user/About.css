@@ -2,8 +2,10 @@
 .about-page {
   background-color: #fafafa;
   color: #333;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Container */
@@ -13,10 +15,10 @@
   padding: 0 20px;
 }
 
-/* Hero */
+/* ===== HERO SECTION ===== */
 .about-hero {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  padding: 80px 20px;
+  padding: 80px 20px 60px;
   text-align: center;
 }
 
@@ -25,6 +27,7 @@
   font-weight: 800;
   margin-bottom: 1rem;
   color: #2d3748;
+  letter-spacing: -0.5px;
 }
 
 .about-hero h1 span {
@@ -36,338 +39,70 @@
   color: #666;
   max-width: 700px;
   margin: 0 auto;
+  line-height: 1.7;
 }
 
-/* Mission & Vision */
-.mission-section {
-  padding: 80px 0;
-  background: white;
-}
-
-.mission-section .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-}
-
-.card {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  border: 1px solid #f0f0f0;
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card h2 {
-  font-size: 1.8rem;
-  color: #4a5568;
-  margin-bottom: 16px;
-}
-
-.card p {
-  font-size: 1.1rem;
-  color: #555;
-}
-
-/* Values */
-.values-section {
-  padding: 80px 0;
-  background: #f9fafb;
-}
-
-.section-title {
+/* ===== SECTION HEADER ===== */
+.section-header {
   text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-header h2 {
   font-size: 2.2rem;
+  font-weight: 700;
   color: #2d3748;
-  margin-bottom: 50px;
+  letter-spacing: -0.5px;
 }
 
-.values-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-}
-
-.value-card {
-  background: white;
-  padding: 28px 24px;
-  border-radius: 14px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-  border: 1px solid #eee;
-}
-
-.value-card h3 {
-  font-size: 1.4rem;
+.section-header h2 span {
   color: #4a5568;
-  margin-bottom: 12px;
 }
 
-.value-card p {
-  color: #666;
-  font-size: 1rem;
-}
-
-/* Stats */
-.stats-section {
-  padding: 70px 0;
-  background: white;
-  text-align: center;
-}
-
-.stats-section .container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 40px;
-}
-
-.stat-item {
-  text-align: center;
-}
-
-.stat-number {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #4a5568;
-  display: block;
-}
-
-.stat-label {
-  font-size: 1.1rem;
+.section-header p {
   color: #777;
-  display: block;
+  font-size: 1rem;
   margin-top: 8px;
 }
 
-/* Contact */
-.contact-section {
-  padding: 80px 0;
-  background: #f9fafb;
-  text-align: center;
+/* ===== MISSION & VISION ===== */
+.mission-section {
+  padding: 70px 0;
+  background: #ffffff;
 }
 
-.contact-section h2 {
-  font-size: 2.2rem;
-  color: #2d3748;
-  margin-bottom: 16px;
-}
-
-.contact-section p {
-  font-size: 1.1rem;
-  color: #666;
-  margin-bottom: 30px;
-}
-
-.contact-links a {
-  display: block;
-  font-size: 1.1rem;
-  color: #4a5568;
-  text-decoration: none;
-  margin: 10px 0;
-  transition: color 0.2s;
-}
-
-.contact-links a:hover {
-  color: #2d3748;
-  text-decoration: underline;
-}
-
-/* Footer */
-.about-footer {
-  background: #2d3748;
-  color: #cbd5e0;
-  text-align: center;
-  padding: 30px 0;
-}
-
-.about-footer p {
-  font-size: 1rem;
-  margin: 0;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .about-hero h1 { font-size: 2.2rem; }
-  .about-hero p { font-size: 1rem; }
-  .card { padding: 24px; }
-  .stat-number { font-size: 2rem; }
-}
-/* === SATU CONTAINER BESAR — KATALOG + MISI & VISI === */
-/* === SATU CONTAINER BESAR — FULL IMAGE === */
-.catalog-mission-container {
-  padding: 0;
-  background: #f9fafb;
-}
-
-.catalog-mission-container .container {
-  max-width: 1200px;
-  height: 500px;
-  margin: 0 auto;
-  background: white;
-  border-radius: 27px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  padding: 0; /* hapus padding agar full */
-  height: 400px; /* atur tinggi tetap */
-  position: relative;
-}
-
-/* Book Stack — Full Container */
-.book-stack {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  padding: 30px;
-  box-sizing: border-box;
-}
-
-.book {
-  flex: 0 0 auto;
-  width: 160px;
-  height: 240px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transition: transform 0.3s ease;
-}
-
-.book:hover {
-  transform: translateY(-6px);
-}
-
-/* Gunakan URL yang sudah ada */
-.book-1 { background-image: url('https://i.pinimg.com/736x/d1/12/ee/d112ee664793dfd6572f7982cb5a8418.jpg'); }
-.book-2 { background-image: url('https://i.pinimg.com/1200x/37/7a/f1/377af12bbc44de29226623b7e77cbded.jpg'); }
-.book-3 { background-image: url('https://i.pinimg.com/736x/cb/fe/be/cbfebea957e3e7962635f730d04f6ac5.jpg'); }
-.book-4 { background-image: url('https://i.pinimg.com/736x/dc/85/3c/dc853cbe1b4680a2588902f016f190a1.jpg'); }
-.book-5 { background-image: url('https://i.pinimg.com/736x/ff/8c/ea/ff8ceae9b89295aa3047e79d6ab9620d.jpg'); }
-.search-btn {
-  background-color: #f59e0b;
-  color: white;
-  border: none;
-  padding: 12px 28px;
-  border-radius: 24px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.search-btn:hover {
-  background-color: #d97706;
-}
-
-.catalog-image {
-  flex: 0 0 40%;
-  display: flex;
-  justify-content: center;
-}
-
-/* === BOOK STACK — MENYAMPING (HORIZONTAL) === */
-.book-stack {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap; /* agar tetap horizontal di desktop */
-  overflow-x: auto; /* scroll horizontal jika di mobile */
-  padding: 20px 0;
-  max-width: 100%;
-}
-
-.book {
-  flex: 0 0 auto; /* jangan shrink atau grow */
-  width: 140px;
-  height: 200px;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transition: transform 0.3s ease;
-}
-
-.book:hover {
-  transform: translateY(-6px);
-}
-
-.book-1 {
-  background-image: url('https://i.pinimg.com/736x/d1/12/ee/d112ee664793dfd6572f7982cb5a8418.jpg');
-  transform: rotate(-15deg) translateX(-60px) translateY(20px);
-  z-index: 1;
-}
-
-.book-2 {
-  background-image: url('https://i.pinimg.com/1200x/37/7a/f1/377af12bbc44de29226623b7e77cbded.jpg');
-  transform: rotate(-5deg) translateX(-30px) translateY(10px);
-  z-index: 3;
-}
-
-.book-3 {
-  background-image: url('https://i.pinimg.com/736x/cb/fe/be/cbfebea957e3e7962635f730d04f6ac5.jpg');
-  transform: rotate(0deg);
-  z-index: 5;
-}
-
-.book-4 {
-  background-image: url('https://i.pinimg.com/736x/dc/85/3c/dc853cbe1b4680a2588902f016f190a1.jpg');
-  transform: rotate(5deg) translateX(30px) translateY(10px);
-  z-index: 3;
-}
-
-.book-5 {
-  background-image: url('https://i.pinimg.com/736x/ff/8c/ea/ff8ceae9b89295aa3047e79d6ab9620d.jpg');
-  transform: rotate(15deg) translateX(60px) translateY(20px);
-  z-index: 1;
-}
-
-/* Divider (Garis Pemisah) */
-.divider {
-  height: 1px;
-  background: #eee;
-  margin: 40px 0;
-}
-
-/* === Misi & Visi — Versi Ringkas & Rapi === */
 .mission-vision-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
-  margin-top: 40px;
 }
 
 .mission-card,
 .vision-card {
-  background: white;
-  padding: 22px;
+  background: #ffffff;
+  padding: 32px 28px;
   border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   border: 1px solid #f0f0f0;
-  transition: transform 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mission-card:hover,
 .vision-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  border-color: #e8e8e8;
+}
+
+.card-icon {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+  display: block;
 }
 
 .mission-card h2,
 .vision-card h2 {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   color: #4a5568;
   margin-bottom: 12px;
   font-weight: 700;
@@ -376,48 +111,60 @@
 .mission-card p,
 .vision-card p {
   font-size: 1rem;
+  color: #555;
+  line-height: 1.7;
+}
+
+/* ===== VALUES ===== */
+.values-section {
+  padding: 70px 0;
+  background: #f9fafb;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.value-card {
+  background: #ffffff;
+  padding: 28px 20px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid #eee;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.value-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  border-color: #e0e0e0;
+}
+
+.value-icon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.value-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #4a5568;
+  margin-bottom: 8px;
+}
+
+.value-card p {
   color: #666;
+  font-size: 0.95rem;
   line-height: 1.5;
 }
 
-/* Responsif */
-@media (max-width: 768px) {
-  .catalog-header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .catalog-text h1 {
-    font-size: 2.2rem;
-  }
-
-  .catalog-image {
-    margin-top: 30px;
-  }
-
-  .book-stack {
-    max-width: 300px;
-    height: 240px;
-  }
-
-  .book {
-    width: 140px;
-    height: 200px;
-  }
-
-  .book-1 { transform: rotate(-15deg) translateX(-40px) translateY(10px); }
-  .book-2 { transform: rotate(-5deg) translateX(-20px) translateY(5px); }
-  .book-4 { transform: rotate(5deg) translateX(20px) translateY(5px); }
-  .book-5 { transform: rotate(15deg) translateX(40px) translateY(10px); }
-}
-.mission-vision-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: 40px; /* tambahkan ini agar tidak menempel ke garis */
-}
-
-/* === SATU CONTAINER BESAR — FULL IMAGE + BACKGROUND RUANGAN === */
+/* ============================================================
+   CATALOG - JANGAN DIUBAH (TETAP SAMA PERSIS)
+   ============================================================ */
 .catalog-mission-container {
   padding: 0;
   background: #ffffff;
@@ -434,7 +181,6 @@
   height: 400px;
 }
 
-/* Background Ruangan */
 .container::before {
   content: '';
   position: absolute;
@@ -447,7 +193,6 @@
   z-index: -1;
 }
 
-/* Sofa */
 .container::after {
   content: '';
   position: absolute;
@@ -461,7 +206,6 @@
   z-index: -1;
 }
 
-/* Book Stack — Full Container with 3D Effect */
 .book-stack {
   position: absolute;
   top: 0;
@@ -490,14 +234,12 @@
   cursor: pointer;
 }
 
-/* Efek 3D — buku di tengah lebih besar & rata */
 .book:nth-child(3) {
   transform: scale(1.1) translateY(-10px);
   z-index: 10;
   box-shadow: 0 12px 32px rgba(255, 255, 255, 0.3);
 }
 
-/* Buku di kiri & kanan — lebih kecil & miring */
 .book:nth-child(2),
 .book:nth-child(4) {
   transform: scale(0.9) rotateY(10deg);
@@ -516,9 +258,285 @@
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
 }
 
-/* Gunakan URL gambar yang sudah ada */
 .book-1 { background-image: url('https://i.pinimg.com/736x/d1/12/ee/d112ee664793dfd6572f7982cb5a8418.jpg'); }
 .book-2 { background-image: url('https://i.pinimg.com/1200x/37/7a/f1/377af12bbc44de29226623b7e77cbded.jpg'); }
 .book-3 { background-image: url('https://i.pinimg.com/736x/cb/fe/be/cbfebea957e3e7962635f730d04f6ac5.jpg'); }
 .book-4 { background-image: url('https://i.pinimg.com/736x/dc/85/3c/dc853cbe1b4680a2588902f016f190a1.jpg'); }
 .book-5 { background-image: url('https://i.pinimg.com/736x/ff/8c/ea/ff8ceae9b89295aa3047e79d6ab9620d.jpg'); }
+
+.divider {
+  height: 1px;
+  background: #eee;
+  margin: 40px 0;
+}
+
+/* ============================================================
+   STATS
+   ============================================================ */
+.stats-section {
+  padding: 60px 0;
+  background: #f8f9fa;
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-item .stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #4a5568;
+  display: block;
+  letter-spacing: -0.5px;
+}
+
+.stat-item .stat-label {
+  font-size: 1rem;
+  color: #777;
+  display: block;
+  margin-top: 6px;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 50px;
+  background: #e0e0e0;
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-section {
+  padding: 70px 0;
+  background: #ffffff;
+  text-align: center;
+}
+
+.contact-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-wrapper h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.contact-wrapper p {
+  font-size: 1.05rem;
+  color: #666;
+  margin-bottom: 28px;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  color: #4a5568;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #f0f0f0;
+  min-width: 280px;
+  justify-content: center;
+}
+
+.contact-link:hover {
+  background: #f0f0f0;
+  color: #2d3748;
+  border-color: #4a5568;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.contact-icon {
+  font-size: 1.2rem;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.about-footer {
+  background: #2d3748;
+  color: #cbd5e0;
+  text-align: center;
+  padding: 30px 0;
+}
+
+.about-footer p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .about-hero p {
+    font-size: 1rem;
+  }
+
+  .mission-vision-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .stat-divider {
+    width: 50px;
+    height: 1px;
+  }
+
+  .stat-item .stat-number {
+    font-size: 2rem;
+  }
+
+  .contact-link {
+    min-width: unset;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .catalog-mission-container .container {
+    height: 300px;
+  }
+
+  .book {
+    width: 120px !important;
+    height: 180px !important;
+  }
+
+  .book:nth-child(3) {
+    transform: scale(1.05) translateY(-8px) !important;
+  }
+
+  .book:nth-child(2),
+  .book:nth-child(4) {
+    transform: scale(0.85) rotateY(8deg) !important;
+  }
+
+  .book:nth-child(1),
+  .book:nth-child(5) {
+    transform: scale(0.75) rotateY(15deg) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .about-hero {
+    padding: 50px 20px 40px;
+  }
+
+  .mission-card,
+  .vision-card {
+    padding: 24px 20px;
+  }
+
+  .mission-card h2,
+  .vision-card h2 {
+    font-size: 1.3rem;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .value-card {
+    padding: 16px 12px;
+  }
+
+  .value-icon {
+    font-size: 1.6rem;
+  }
+
+  .value-card h3 {
+    font-size: 1rem;
+  }
+
+  .value-card p {
+    font-size: 0.85rem;
+  }
+
+  .stat-item .stat-number {
+    font-size: 1.6rem;
+  }
+
+  .contact-wrapper h2 {
+    font-size: 1.6rem;
+  }
+
+  .contact-link {
+    font-size: 0.9rem;
+    padding: 12px 16px;
+  }
+
+  .about-footer p {
+    font-size: 0.8rem;
+  }
+
+  .catalog-mission-container .container {
+    height: 220px;
+  }
+
+  .book {
+    width: 80px !important;
+    height: 120px !important;
+  }
+
+  .book:nth-child(3) {
+    transform: scale(1.05) translateY(-5px) !important;
+  }
+
+  .book:nth-child(2),
+  .book:nth-child(4) {
+    transform: scale(0.8) rotateY(6deg) !important;
+  }
+
+  .book:nth-child(1),
+  .book:nth-child(5) {
+    transform: scale(0.7) rotateY(10deg) !important;
+  }
+}

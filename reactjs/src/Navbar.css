@@ -1,7 +1,7 @@
 /* ================= Navbar Admin ================= */
 .navbar {
   display: flex;
-  justify-content: space-around; 
+  justify-content: space-between; 
   align-items: center;          
   position: sticky;
   top: 0;
@@ -20,6 +20,7 @@
   color: #2d3748;
   cursor: pointer;
   transition: color 0.3s ease;
+  margin-right: auto; 
 }
 .nav-logo:hover {
   color: #2d3748;
